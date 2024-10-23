@@ -70,3 +70,8 @@ a, .btn-link {
 .item-completed {
     text-decoration: line-through;
 }
+
+#Item:focus {
+    box-shadow: none;
+    border: 2px solid red;
+}

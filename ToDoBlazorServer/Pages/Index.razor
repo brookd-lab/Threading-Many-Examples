@@ -5,7 +5,7 @@
 <PageTitle>Todo List</PageTitle>
 
 <div style="border: 1px solid lightgray; padding: 10px; margin-bottom: 25px;">
-<h4>New Item</h4>
+<h4>Add Item</h4>
 <TodoItemForm OnItemAdded="@ItemsChanged" />
 </div>
 
@@ -14,7 +14,7 @@
     <div style="border: 1px solid lightgray; padding: 10px;">
         @foreach (var todo in Todos)
         {
-            <div style="display: flex; margin-bottom: 10px;">
+            <div style="display: flex; align-items: center; margin-bottom: 10px;">
                 <div class="@ItemClass(todo)" style="width: 280px;">@todo.Text</div>
                 @if (todo.Completed)
                 {
