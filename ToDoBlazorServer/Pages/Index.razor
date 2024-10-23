@@ -1,0 +1,73 @@
+﻿@page "/"
+@using ToDoBlazorServer.Services
+@inject ITodoService _todoService;
+
+<PageTitle>Todo List</PageTitle>
+
+<div style="border: 1px solid lightgray; padding: 10px; margin-bottom: 25px;">
+<h4>New Item</h4>
+<TodoItemForm OnItemAdded="@ItemsChanged" />
+</div>
+
+@if (Todos.Count > 0)
+{
+    <div style="border: 1px solid lightgray; padding: 10px;">
+        @foreach (var todo in Todos)
+        {
+            <div style="display: flex; margin-bottom: 10px;">
+                <div class="@ItemClass(todo)" style="width: 280px;">@todo.Text</div>
+                @if (todo.Completed)
+                {
+                    <button class="btn btn-primary" onclick="@(() => UncompleteItem(todo))">Uncomplete</button>
+                }
+                @if (!todo.Completed)
+                {
+                    <button class="btn btn-primary" onclick="@(() => CompleteItem(todo))">Complete</button>
+                }
+                <div>
+                    <button onclick="@(() => DeleteItem(todo))" class="ms-2 btn btn-danger">Delete</button>
+                </div>
+            </div>
+        }
+    </div>
+}
+
+
+@code {
+    List<TodoItem> Todos = new();
+
+    protected override void OnInitialized()
+    {
+        Todos = _todoService.GetAll().ToList();
+    }
+
+    public string ItemClass(TodoItem item)
+    {
+        return item.Completed ? "item-completed" : "";
+    }
+
+    public void ItemsChanged()
+    {
+        Todos = _todoService.GetAll().ToList();
+        StateHasChanged();
+    }
+
+    public void DeleteItem(TodoItem item)
+    {
+        _todoService.Delete(item);
+        ItemsChanged();
+    }
+
+    public void CompleteItem(TodoItem item)
+    {
+        _todoService.Complete(item);
+        ItemsChanged();
+    }
+
+    public void UncompleteItem(TodoItem item)
+    {
+        _todoService.Uncomplete(item);
+        ItemsChanged();
+    }
+
+}

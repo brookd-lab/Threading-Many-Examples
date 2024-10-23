@@ -33,7 +33,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RabbitMQConsumer", "RabbitM
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RabbitMQProducer", "RabbitMQProducer\RabbitMQProducer.csproj", "{72CA7D6C-1B66-4F5C-A7FE-D6C9EF245C0F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSMQConsole", "MSMQConsole\MSMQConsole.csproj", "{3B413163-3671-4D33-A75C-1657F12891CC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MSMQConsole", "MSMQConsole\MSMQConsole.csproj", "{3B413163-3671-4D33-A75C-1657F12891CC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDoBlazorServer", "ToDoBlazorServer\ToDoBlazorServer.csproj", "{AF8C9EFE-9E04-480D-AAD4-35C21FDE5CE0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -105,6 +107,10 @@ Global
 		{3B413163-3671-4D33-A75C-1657F12891CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3B413163-3671-4D33-A75C-1657F12891CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3B413163-3671-4D33-A75C-1657F12891CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF8C9EFE-9E04-480D-AAD4-35C21FDE5CE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF8C9EFE-9E04-480D-AAD4-35C21FDE5CE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF8C9EFE-9E04-480D-AAD4-35C21FDE5CE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF8C9EFE-9E04-480D-AAD4-35C21FDE5CE0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
