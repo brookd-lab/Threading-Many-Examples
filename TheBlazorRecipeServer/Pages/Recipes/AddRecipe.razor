@@ -1,0 +1,49 @@
+﻿@page "/recipes/add"
+@using BlazorRecipeServer.Models
+@using BlazorRecipeServer.Services
+@inject RecipeService recipeService
+@inject NavigationManager NavigationManager
+
+<h4>Add Recipe</h4>
+<hr />
+
+<form>
+    <div class="row">
+        <div class="col-md-12">
+            <input type="hidden" name="Id" value="@recipe.Id" />
+            <div class="form-group mb-2">
+                <label>Name</label>
+                <input form="Name" class="form-control" @bind="@recipe.Name" required>
+            </div>
+            <div class="form-group mb-5">
+                <label>Description</label>
+                    <input form="Description" class="form-control" @bind="@recipe.Description" required>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <input type="button" class="btn btn-primary" @onclick="@AddTheRecipe" value="Add" />
+                <input type="button" class="btn btn-danger" @onclick="@Cancel" value="Cancel" />
+            </div>
+        </div>
+    </div>
+</form>
+
+@code {
+   
+    Recipe recipe = new();
+
+    
+    protected void AddTheRecipe()
+    {
+        recipeService.AddRecipe(recipe);
+        NavigationManager.NavigateTo("Recipes");
+    }
+    void Cancel()
+    {
+        NavigationManager.NavigateTo("Recipes");
+    }
+}

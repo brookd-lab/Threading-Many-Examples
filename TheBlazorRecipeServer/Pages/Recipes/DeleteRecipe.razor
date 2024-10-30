@@ -1,0 +1,54 @@
+﻿@page "/recipes/delete/{id:int}"
+@using BlazorRecipeServer.Models
+@using BlazorRecipeServer.Services
+@inject NavigationManager NavigationManager
+@inject RecipeService _service;
+
+
+<h4>Delete Recipe</h4>
+<hr />
+<form>
+    <div class="row">
+        <div class="col-md-12">
+            <input type="hidden" name="Id" value="@recipe.Id" />
+            <div class="form-group mb-2">
+                <label>Name</label>
+                <input form="Name" class="form-control" @bind="@recipe.Name" readonly>
+            </div>
+            <div class="form-group mb-5">
+                <label>Description</label>
+                <input form="Description" class="form-control" @bind="@recipe.Description" readonly>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <input type="button" class="btn btn-danger" @onclick="@DeleteTheRecipe" value="Delete" />
+                <input type="button" class="btn btn-primary" @onclick="@Cancel" value="Cancel" />
+            </div>
+        </div>
+    </div>
+</form>
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+    public Recipe recipe { get; set; }
+
+    protected override void OnInitialized()
+    {
+        recipe = _service.GetRecipe(Id);
+    }
+
+    protected void DeleteTheRecipe()
+    {
+        _service.DeleteRecipe(Convert.ToInt32(Id));
+        NavigationManager.NavigateTo("Recipes");
+    }
+    void Cancel()
+    {
+        NavigationManager.NavigateTo("Recipes");
+    }
+}

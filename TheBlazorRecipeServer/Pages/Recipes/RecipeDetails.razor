@@ -1,0 +1,44 @@
+﻿@page "/recipes/details/{id:int}"
+@using BlazorRecipeServer.Models
+@using BlazorRecipeServer.Services
+@inject RecipeService _service;
+
+<div>
+    <h4>Recipe Details</h4>
+    <hr />
+
+    @if (recipe != null)
+    {
+        <form>
+            <div class="row">
+                <div class="col-md-12">
+                    <input type="hidden" name="Id" value="@recipe.Id" />
+                    <div class="form-group mb-2">
+                        <label>Name</label>
+                        <input form="Name" class="form-control" @bind="@recipe.Name" readonly>
+                    </div>
+                    <div class="form-group mb-5">
+                        <label>Description</label>
+                        <input form="Description" class="form-control" @bind="@recipe.Description" readonly>
+                    </div>
+                </div>
+            </div>
+        </form>
+    }
+</div>
+
+<div>
+    <a class="btn btn-success" href="/recipes/edit/@recipe.Id">Edit</a>
+    <a class="btn btn-primary" href="/recipes">Back to List</a>
+</div>
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+    public Recipe recipe { get; set; }
+    protected override void OnInitialized()
+    {
+        recipe = _service.GetRecipe(Id);
+    }
+}
