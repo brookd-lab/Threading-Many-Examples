@@ -1,7 +1,7 @@
 ﻿using BlazorRecipeServer.Data;
 using BlazorRecipeServer.Models;
 using Microsoft.EntityFrameworkCore;
-using TheBlazorRecipeServer.Services;
+using BlazorRecipeServer.Services;
 
 namespace BlazorRecipeServer.Services
 {

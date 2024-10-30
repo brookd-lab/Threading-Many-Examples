@@ -2,7 +2,9 @@
 @page "/recipes"
 @using BlazorRecipeServer.Models
 @using BlazorRecipeServer.Services
-@inject RecipeService _service;
+@using BlazorRecipeServer
+@inject IRecipeService _service;
+@inherits MyRecipeList
 
 <h3>Recipes</h3>
 
@@ -43,10 +45,10 @@
 </table>
 
 @code {
-    List<Recipe> recipes = new();
+    // List<Recipe> recipes = new();
 
-    protected override async Task OnInitializedAsync()
-    {
-        recipes = await _service.GetAllRecipes();
-    }
+    // protected override async Task OnInitializedAsync()
+    // {
+    //     recipes = await _service.GetAllRecipes();
+    // }
 }

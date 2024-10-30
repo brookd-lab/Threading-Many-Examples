@@ -1,7 +1,7 @@
 ﻿using BlazorRecipeServer.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace TheBlazorRecipeServer.Services
+namespace BlazorRecipeServer.Services
 {
     public interface IRecipeService
     {

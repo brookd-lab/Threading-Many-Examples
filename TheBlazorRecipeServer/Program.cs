@@ -11,7 +11,7 @@ builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddDbContext<ApplicationDbContext>(
     options => options.UseSqlServer("name=ConnectionStrings:DefaultConnection"));
-builder.Services.AddScoped<RecipeService>();
+builder.Services.AddScoped<IRecipeService, RecipeService>();
 
 var app = builder.Build();
 
