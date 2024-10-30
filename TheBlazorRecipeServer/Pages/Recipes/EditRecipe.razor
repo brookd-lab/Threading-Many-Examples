@@ -1,4 +1,4 @@
-﻿@page "/recipes/edit/{Id}"
+﻿@page "/recipes/edit/{id:int}"
 @using BlazorRecipeServer.Models
 @using BlazorRecipeServer.Services
 @inject RecipeService recipeService
@@ -34,17 +34,17 @@
 
 @code {
     [Parameter]
-    public string Id { get; set; }
+    public int id { get; set; }
 
     Recipe recipe = new();
 
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
-        recipe = recipeService.GetRecipe(Convert.ToInt32(Id));
+        recipe = await recipeService.GetRecipe(id);
     }
-    protected void UpdateEmployee()
+    protected async Task UpdateEmployee()
     {
-        recipeService.UpdateRecipe(recipe);
+        await recipeService.UpdateRecipe(recipe);
         NavigationManager.NavigateTo("Recipes");
     }
     void Cancel()

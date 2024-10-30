@@ -36,10 +36,9 @@
    
     Recipe recipe = new();
 
-    
-    protected void AddTheRecipe()
+    protected async Task AddTheRecipe()
     {
-        recipeService.AddRecipe(recipe);
+        await recipeService.AddRecipe(recipe);
         NavigationManager.NavigateTo("Recipes");
     }
     void Cancel()

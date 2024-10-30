@@ -43,10 +43,10 @@
 </table>
 
 @code {
-    IEnumerable<Recipe> recipes = new List<Recipe>();
+    List<Recipe> recipes = new();
 
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
-        recipes = _service.GetAllRecipes();
+        recipes = await _service.GetAllRecipes();
     }
 }

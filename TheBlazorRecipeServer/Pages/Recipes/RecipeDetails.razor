@@ -34,11 +34,12 @@
 
 @code {
     [Parameter]
-    public int Id { get; set; }
-
+    public int id { get; set; }
+    
     public Recipe recipe { get; set; }
-    protected override void OnInitialized()
+
+    protected override async Task OnInitializedAsync()
     {
-        recipe = _service.GetRecipe(Id);
+        recipe = await _service.GetRecipe(id);
     }
 }

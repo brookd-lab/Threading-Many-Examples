@@ -1,9 +1,11 @@
 ﻿using BlazorRecipeServer.Data;
 using BlazorRecipeServer.Models;
+using Microsoft.EntityFrameworkCore;
+using TheBlazorRecipeServer.Services;
 
 namespace BlazorRecipeServer.Services
 {
-    public class RecipeService
+    public class RecipeService : IRecipeService
     {
         private readonly ApplicationDbContext _context;
 
@@ -12,39 +14,40 @@ namespace BlazorRecipeServer.Services
             _context = context;
         }
 
-        public IEnumerable<Recipe> GetAllRecipes()
+        public async Task<List<Recipe>> GetAllRecipes()
         {
-            return _context.Recipes.ToList();
+            var recipes = await _context.Recipes.ToListAsync();
+            return recipes;
         }
 
-        public Recipe GetRecipe(int id) {
-            var recipe = _context.Recipes.Find(id);
-            return recipe;
+        public async Task<Recipe> GetRecipe(int id) {
+            Recipe? recipe = await _context.Recipes.FindAsync(id);
+            return recipe!;
         }
 
-        public void AddRecipe(Recipe recipe)
+        public async Task AddRecipe(Recipe recipe)
         {
-            _context.Recipes.Add(recipe);
-            _context.SaveChanges();
+            await _context.Recipes.AddAsync(recipe);
+            await _context.SaveChangesAsync();
         }
 
-        public void UpdateRecipe(Recipe updatedRecipe)
+        public async Task UpdateRecipe(Recipe updatedRecipe)
         {
-            Recipe recipe = GetRecipe(updatedRecipe.Id);
+            Recipe? recipe = await GetRecipe(updatedRecipe.Id);
             if (recipe != null)
             {
                 recipe.Name = updatedRecipe.Name;
                 recipe.Description = updatedRecipe.Description;
             }
             _context.Recipes.Update(recipe);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public void DeleteRecipe(int id)
+        public async Task DeleteRecipe(int id)
         {
-            Recipe recipe = GetRecipe(id);
+            Recipe? recipe = await GetRecipe(id);
             _context.Recipes.Remove(recipe);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
     }
 }
