@@ -1,7 +1,9 @@
 ﻿@page "/recipes/details/{id:int}"
+@using BlazorRecipeServer
 @using BlazorRecipeServer.Models
 @using BlazorRecipeServer.Services
 @inject IRecipeService _service;
+@inherits MyRecipeDetails
 
 <div>
     <h4>Recipe Details</h4>
@@ -33,13 +35,13 @@
 </div>
 
 @code {
-    [Parameter]
-    public int id { get; set; }
+    // [Parameter]
+    // public int id { get; set; }
     
-    public Recipe recipe { get; set; }
+    // public Recipe recipe { get; set; }
 
-    protected override async Task OnInitializedAsync()
-    {
-        recipe = await _service.GetRecipe(id);
-    }
+    // protected override async Task OnInitializedAsync()
+    // {
+    //     recipe = await _service.GetRecipe(id);
+    // }
 }
